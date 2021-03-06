@@ -1,8 +1,8 @@
 const languages = {
-  'defaultLanguage': 'pt-br',
+  'defaultLanguage': 'en',
   'sentences': {
     'welcome to the page': {
-      'pt-br': 'bem vindo a página',
+      'pt-br': 'bem-vindo à página',
       'en-us': 'welcome to the page'
     },
     'this text has no a pt-br translation': {},
@@ -15,17 +15,13 @@ const languages = {
 
 function renderTranslations(lang) {
   document.querySelectorAll('*[data-translate]').forEach(element => {
-    let { textContent } = element;
     const { sentences } = languages;
     const index_translation = element.getAttribute("data-translate")
-    
-    textContent = element.previousText || textContent;
 
     if (sentences.hasOwnProperty(index_translation)) {
       if (languages.defaultLanguage === lang) {
-        element.textContent = textContent;
+        element.textContent = index_translation;
       } else if (sentences[index_translation].hasOwnProperty(lang)) {
-        element.previousText = textContent;
         element.textContent = sentences[index_translation][lang];
       }
     }
